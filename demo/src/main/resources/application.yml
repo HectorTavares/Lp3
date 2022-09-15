@@ -1,0 +1,18 @@
+server:
+  servlet:
+    context-path: /lp3
+  port: 8090
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+#      ddl-auto: validade
+  datasource:
+    username: root
+    password: toor
+    url: jdbc:mysql://localhost:3306/$lp3_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
