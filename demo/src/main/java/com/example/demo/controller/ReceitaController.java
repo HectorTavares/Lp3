@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Categoria;
+import com.example.demo.domain.Ingrediente;
 import com.example.demo.domain.Receita;
 import com.example.demo.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -33,6 +36,11 @@ public class ReceitaController {
     @GetMapping("/ingredientes")
     public List<Receita> buscarReceitasPorIngredientesEspecificos(@RequestParam String[] ingredientes){
         return service.buscarTodasReceitasQuePossuamIngredientes(ingredientes);
+    }
+
+    @GetMapping("/categorias/ingredientes")
+    public HashMap<Categoria, List<Ingrediente>> buscarReceitasPorIngredientesEspecificos(){
+        return service.buscarIngredientesPorCategoria();
     }
 
 
