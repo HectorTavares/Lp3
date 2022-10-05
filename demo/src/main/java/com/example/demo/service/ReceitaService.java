@@ -28,7 +28,7 @@ public class ReceitaService {
 
 
 
-
+    //a
     public List<Receita> buscarReceitaPorIngrediente(String nomeIngrediente) {
 
         Ingrediente ingrediente = ingredienteRepository.findFirstByNome(nomeIngrediente);
@@ -40,10 +40,12 @@ public class ReceitaService {
         return repository.findByIngredientesContains(ingrediente);
     }
 
+    //b
     public List<Receita> buscarReceitaPorIntervaloDeNotas(double notaMinima, double notaMaxima) {
         return repository.findByNotas(notaMinima, notaMaxima);
     }
 
+    //c
     public List<Receita> buscarTodasReceitasQuePossuamIngredientes(String[] ingredientes) {
 
         List<String> listaIngredientes = Arrays.asList(ingredientes);
@@ -53,6 +55,14 @@ public class ReceitaService {
                 .collect(Collectors.toList());
 
         return repository.findByIngredientes(idsIngredientes);
+    }
+
+     //d
+    public List<Receita> buscarReceitasPorCategoria(String[] categorias){
+
+        List<String> listaCategorias = Arrays.asList(categorias);
+
+        return repository.findByCategorias(listaCategorias);
     }
 
     //E
@@ -73,7 +83,15 @@ public class ReceitaService {
         return ingredientesAgrupados;
     }
 
-    //E
+   
+
+    //f
+    public List<Receita> buscarPorPalavraChave(String palavraChave){
+
+
+        return repository.findByModoPreparo(palavraChave);
+    }
+
     private static void verificarIngredienteJaEstaNaAgrupadoEAdicionar(HashMap<Categoria, List<Ingrediente>> ingredientesAgrupados, Receita receita, Categoria categoriaReceita) {
         receita.getIngredientes().forEach(ingrediente -> {
             if (!ingredientesAgrupados.get(categoriaReceita).contains(ingrediente)) {
@@ -82,5 +100,5 @@ public class ReceitaService {
                 ingredientesAgrupados.put(categoriaReceita, ingredientesDaCategoria);
             }
         });
-    }
+
 }

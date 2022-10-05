@@ -38,10 +38,23 @@ public class ReceitaController {
         return service.buscarTodasReceitasQuePossuamIngredientes(ingredientes);
     }
 
+<<<<<<< HEAD
     @GetMapping("/categorias/ingredientes")
     public HashMap<Categoria, List<Ingrediente>> buscarReceitasPorIngredientesEspecificos(){
         return service.buscarIngredientesPorCategoria();
     }
 
+=======
+    @GetMapping("/categorias")
+    public List<Receita>listarReceitasPorCategorias(@RequestParam String[] categorias){
+        return service.buscarReceitasPorCategoria(categorias);
+    }
+
+
+    @GetMapping("/preparo")
+    public List<Receita> listarTodasAsReceitasPorOcorrenciaDePalavraChaveNoModoDePreparo(@RequestParam String palavraChave){
+        return service.buscarPorPalavraChave(palavraChave);
+    }
+>>>>>>> ed4c3cebdb3cd636670290b5cb8d798d86e03c96
 
 }

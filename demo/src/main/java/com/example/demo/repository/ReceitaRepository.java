@@ -20,6 +20,9 @@ public interface ReceitaRepository extends JpaRepository<Receita, Long> {
     @Query(value = "select distinct * from receita r inner join receita_ingrediente ri on r.id = ri.receita_id  where ri.ingrediente_id in (:ingredientes)", nativeQuery = true)
     List<Receita> findByIngredientes(List<Long> ingredientes);
 
-    List<Receita> findByCategoria(Categoria categoria);
+    @Query(value = "select * from receita r where r.categoria in (:categorias)", nativeQuery = true)
+    List<Receita> findByCategorias(List<String> categorias);
 
+    @Query(value = " select * from receita r where r.modo_preparo LIKE %:palavraChave% ", nativeQuery = true)
+    List<Receita> findByModoPreparo(String palavraChave);
 }
