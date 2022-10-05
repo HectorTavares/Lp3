@@ -6,7 +6,6 @@ import com.example.demo.domain.Receita;
 import com.example.demo.repository.IngredienteRepository;
 import com.example.demo.repository.ReceitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.IsNull;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,13 +26,12 @@ public class ReceitaService {
     IngredienteRepository ingredienteRepository;
 
 
-
     //a
     public List<Receita> buscarReceitaPorIngrediente(String nomeIngrediente) {
 
         Ingrediente ingrediente = ingredienteRepository.findFirstByNome(nomeIngrediente);
 
-        if (isNull(ingrediente)){
+        if (isNull(ingrediente)) {
             return new ArrayList<Receita>();
         }
 
@@ -51,14 +49,14 @@ public class ReceitaService {
         List<String> listaIngredientes = Arrays.asList(ingredientes);
 
         List<Long> idsIngredientes = listaIngredientes.stream().map(ingrediente ->
-                ingredienteRepository.findFirstByNome(ingrediente).getId())
+                        ingredienteRepository.findFirstByNome(ingrediente).getId())
                 .collect(Collectors.toList());
 
         return repository.findByIngredientes(idsIngredientes);
     }
 
-     //d
-    public List<Receita> buscarReceitasPorCategoria(String[] categorias){
+    //d
+    public List<Receita> buscarReceitasPorCategoria(String[] categorias) {
 
         List<String> listaCategorias = Arrays.asList(categorias);
 
@@ -73,7 +71,7 @@ public class ReceitaService {
 
         receitas.forEach(receita -> {
             Categoria categoriaReceita = receita.getCategoria();
-            if(!ingredientesAgrupados.containsKey(categoriaReceita)){
+            if (!ingredientesAgrupados.containsKey(categoriaReceita)) {
                 ingredientesAgrupados.put(categoriaReceita, receita.getIngredientes());
             } else {
                 verificarIngredienteJaEstaNaAgrupadoEAdicionar(ingredientesAgrupados, receita, categoriaReceita);
@@ -84,7 +82,7 @@ public class ReceitaService {
     }
 
     //f
-    public List<Receita> buscarPorPalavraChave(String palavraChave){
+    public List<Receita> buscarPorPalavraChave(String palavraChave) {
         return repository.findByModoPreparo(palavraChave);
     }
 
@@ -96,5 +94,5 @@ public class ReceitaService {
                 ingredientesAgrupados.put(categoriaReceita, ingredientesDaCategoria);
             }
         });
-
+    }
 }

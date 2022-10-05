@@ -18,11 +18,6 @@ public class ReceitaController {
     @Autowired
     ReceitaService service;
 
-    @GetMapping("/teste")
-    public String teste(){
-        return "Teste";
-    }
-
     @GetMapping()
     public List<Receita> buscarReceitaPorNomeDeIngrediente(@RequestParam String nomeIngrediente){
         return service.buscarReceitaPorIngrediente(nomeIngrediente);
