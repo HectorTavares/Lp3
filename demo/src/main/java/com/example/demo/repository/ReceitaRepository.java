@@ -16,7 +16,7 @@ public interface ReceitaRepository extends JpaRepository<Receita, Long> {
     @Query(value = "SELECT * FROM receita r WHERE (r.soma_notas / r.num_notas) >= :notaMinima AND (r.soma_notas  / r.num_notas) <= :notaMaxima", nativeQuery = true)
     List<Receita> findByNotas(double notaMinima, double notaMaxima);
 
-//    @Query("SELECT * FROM Receita r WHERE r. IN (1, 2, 3, 4) AND somecolumnt IN :ingredientes")
-//    List<Receita> findByIngredientesEquals(List<Ingrediente> ingredientes);
+    @Query(value = "select distinct * from receita r inner join receita_ingrediente ri on r.id = ri.receita_id  where ri.ingrediente_id in (:ingredientes)", nativeQuery = true)
+    List<Receita> findByIngredientes(List<Long> ingredientes);
 
 }

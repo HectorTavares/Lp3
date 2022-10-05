@@ -5,6 +5,7 @@ import com.example.demo.domain.Receita;
 import com.example.demo.repository.IngredienteRepository;
 import com.example.demo.repository.ReceitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.IsNull;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,14 +43,13 @@ public class ReceitaService {
     }
 
     public List<Receita> buscarTodasReceitasQuePossuamIngredientes(String[] ingredientes) {
-//        List<Ingrediente> ingredientesPopulados = ingredienteRepository.findByNomeIsIn(ingredientes);
-//
-//        if (isNull(ingredientesPopulados)){
-//            return new ArrayList<Receita>();
-//        }
-//
-//        return repository.findByIngredientesEquals(ingredientesPopulados);
 
-        return new ArrayList<Receita>();
+        List<String> listaIngredientes = Arrays.asList(ingredientes);
+
+        List<Long> idsIngredientes = listaIngredientes.stream().map(ingrediente ->
+                ingredienteRepository.findFirstByNome(ingrediente).getId())
+                .collect(Collectors.toList());
+
+        return repository.findByIngredientes(idsIngredientes);
     }
 }
