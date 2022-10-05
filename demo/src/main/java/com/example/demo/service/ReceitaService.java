@@ -83,12 +83,8 @@ public class ReceitaService {
         return ingredientesAgrupados;
     }
 
-   
-
     //f
     public List<Receita> buscarPorPalavraChave(String palavraChave){
-
-
         return repository.findByModoPreparo(palavraChave);
     }
 
