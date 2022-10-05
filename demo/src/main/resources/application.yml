@@ -9,8 +9,8 @@ logging:
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
-#      ddl-auto: validade
+      ddl-auto: create
+#      ddl-auto: validate
   datasource:
     username: root
     password: toor

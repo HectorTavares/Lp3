@@ -34,4 +34,20 @@ public class ReceitaService {
 
         return repository.findByIngredientesContains(ingrediente);
     }
+
+    public List<Receita> buscarReceitaPorIntervaloDeNotas(double notaMinima, double notaMaxima) {
+        return repository.findBySomaNotasGreaterThanEqualAndSomaNotasLessThanEqual(notaMinima, notaMaxima);
+    }
+
+    public List<Receita> buscarTodasReceitasQuePossuamIngredientes(String[] ingredientes) {
+//        List<Ingrediente> ingredientesPopulados = ingredienteRepository.findByNomeIsIn(ingredientes);
+//
+//        if (isNull(ingredientesPopulados)){
+//            return new ArrayList<Receita>();
+//        }
+//
+//        return repository.findByIngredientesEquals(ingredientesPopulados);
+
+        return new ArrayList<Receita>();
+    }
 }

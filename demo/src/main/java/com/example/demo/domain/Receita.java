@@ -31,6 +31,7 @@ public class Receita {
 
     private String modoPreparo;
 
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
 
@@ -44,6 +45,6 @@ public class Receita {
                     name = "ingrediente_id", referencedColumnName = "id"
             )
     )
-    private List<Ingrediente>  ingredientes;
+    private List<Ingrediente> ingredientes;
 
 }

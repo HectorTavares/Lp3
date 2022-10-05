@@ -25,5 +25,15 @@ public class ReceitaController {
         return service.buscarReceitaPorIngrediente(nomeIngrediente);
     }
 
+    @GetMapping("/nota")
+    public List<Receita> buscarReceitasPorIntervaloDeNotas(@RequestParam double notaMinima, @RequestParam double notaMaxima){
+        return service.buscarReceitaPorIntervaloDeNotas(notaMinima, notaMaxima);
+    }
+
+    @GetMapping("/ingredientes")
+    public List<Receita> buscarReceitasPorIngredientesEspecificos(@RequestParam String[] ingredientes){
+        return service.buscarTodasReceitasQuePossuamIngredientes(ingredientes);
+    }
+
 
 }
