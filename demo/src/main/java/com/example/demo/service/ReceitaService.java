@@ -40,7 +40,7 @@ public class ReceitaService {
 
     //b
     public List<Receita> buscarReceitaPorIntervaloDeNotas(double notaMinima, double notaMaxima) {
-        return repository.findBySomaNotasGreaterThanEqualAndSomaNotasLessThanEqual(notaMinima, notaMaxima);
+        return repository.findByNotas(notaMinima, notaMaxima);
     }
 
     //c
