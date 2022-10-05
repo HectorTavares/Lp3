@@ -35,5 +35,15 @@ public class ReceitaController {
         return service.buscarTodasReceitasQuePossuamIngredientes(ingredientes);
     }
 
+    @GetMapping("/categorias")
+    public List<Receita>listarReceitasPorCategorias(@RequestParam String[] categorias){
+        return service.buscarReceitasPorCategoria(categorias);
+    }
+
+
+    @GetMapping("/preparo")
+    public List<Receita> listarTodasAsReceitasPorOcorrenciaDePalavraChaveNoModoDePreparo(@RequestParam String palavraChave){
+        return service.buscarPorPalavraChave(palavraChave);
+    }
 
 }
