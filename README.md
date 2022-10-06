@@ -53,6 +53,3 @@ INSERT INTO $lp3_db.receita_ingrediente
 (receita_id, ingrediente_id)
 VALUES(1, 1);
 ``
-
-
-select distinct * from receita r inner join receita_ingrediente ri on r.id = ri.receita_id  where ri.ingrediente_id  in (select DISTINCT i.id from ingrediente i where i.id in (1,2)
